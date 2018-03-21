@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dojo Message Board</title>
+    <style>
+        .main{font-weight:300; font-size: 16px;}
+        .indent{padding-left: 15px;}
+    </style>
+</head>
+<body>
+    <h1>The Dojo Message Board</h1>
+    <form action='post_message' method='POST'>
+        Name: <input type='text' name='message_name'>
+        Message: <input type='textarea' name='message_content'>
+    </form>
+        <input type='submit' value='Post message'>
+        <% for(var i = 0; i < message.length; i++) { %>
+            <p class='main'>Name: <%= message[i].message_name %> </p>
+            <p class='main'>Message: <%= message[i].message_content %> </p>
+                <% for(var j = 0; i < comment.length; i++) { %>
+                    <p class='indent'>Name: <%= comment[i].comment_name %> </p>
+                    <p class='indent'>Comment: <%= comment[i].comment_content %> </p>
+            <%}%>
+            <form action='post_comment/<%= message[i]._id %>' method='POST'>
+                Name: <input type='text' name='comment_name'>
+                Comment: <input type='textarea' name='comment_content'>
+                <input type='submit' value='Post comment'>
+            </form>
+        <%}%>
+</body>
+</html>
